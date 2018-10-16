@@ -13,10 +13,10 @@ class App extends Component {
 
   fetchExpress = async () => {
     const response = await fetch(`/api`);
-    console.log(("response": response));
+    console.log("response", response);
     const data = await response.body;
 
-    console.log(("data": data));
+    console.log("data", data);
   };
 
   render() {
