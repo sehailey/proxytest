@@ -5,7 +5,7 @@ import "./App.css";
 class App extends Component {
   constructor() {
     super();
-    this.state = { data: "Did not get data from Express" };
+    this.state = { data: "Did not get data from Express", error: "" };
   }
   componentDidMount() {
     this.fetchExpress();
@@ -19,6 +19,7 @@ class App extends Component {
       this.setState({ data: data });
     } catch (e) {
       console.log(e);
+      this.setState({ error: e });
     }
   };
 
