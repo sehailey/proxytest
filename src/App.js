@@ -13,9 +13,10 @@ class App extends Component {
 
   fetchExpress = async () => {
     const response = await fetch(`/api`);
-    const data = await response.json();
+    console.log(response);
+    const data = await response.text();
 
-    this.setState(data);
+    this.setState(("text": data));
   };
 
   render() {

@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000/",
   "dependencies": {
+    "concurrently": "^4.0.1",
     "express": "^4.16.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -14,7 +15,10 @@
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "client": "react-scripts start",
+    "server": "nodemon server",
     "eject": "react-scripts eject",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {

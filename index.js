@@ -11,7 +11,9 @@ app.use(express.static(path.join(__dirname, "build")));
 // Serve our api route /cow that returns a custom talking text cow
 app.get("/api", async (req, res, next) => {
   try {
-    res.json({ data: "HELLOOOOO FROM EXPRESS" });
+    const data = { data: "HELLOOOOO FROM EXPRESS" };
+    console.log(data);
+    res.json(data);
   } catch (err) {
     next(err);
   }
