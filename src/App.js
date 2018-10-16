@@ -6,7 +6,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: "Did not get data from Express",
+      data: "",
       error: "",
       eee: "",
       text: ""
@@ -28,7 +28,7 @@ class App extends Component {
       this.setState({ data: data });
     } catch (e) {
       console.log(e);
-      this.setState({ error: e });
+      this.setState({ error: "Did not get data from Express" });
     }
   };
 
@@ -39,7 +39,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>WELCOME CREATE REACT APP!</p>
           <div className="App-link">{this.state.data}</div>
-          <div>error: {this.state.error}</div>
+          {/* <div>error: {this.state.error}</div> */}
           <div>text: {this.state.text}</div>
           <div>eee: {this.state.eee}</div>
         </header>

@@ -5,7 +5,6 @@ const path = require("path");
 const app = express();
 
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "build")));
 
 // Serve our api route /cow that returns a custom talking text cow
 app.get("/api", async (req, res, next) => {
@@ -17,6 +16,8 @@ app.get("/api", async (req, res, next) => {
     next(err);
   }
 });
+
+app.use(express.static(path.join(__dirname, "build")));
 
 // Anything that doesn't match the above, send back the index.html file
 app.get("*", (req, res) => {
