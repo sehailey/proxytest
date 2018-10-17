@@ -16,7 +16,7 @@ class App extends Component {
 
   fetchAPIMessage = async () => {
     try {
-      const res = await fetch(`/api`);
+      const res = await fetch(`/api/message`);
       const { message } = await res.json();
       this.setState({ message });
     } catch (e) {

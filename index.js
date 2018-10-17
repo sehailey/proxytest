@@ -5,11 +5,12 @@ const morgan = require("morgan");
 // Create the server
 const app = express();
 app.use(morgan("tiny")); // logging framework
+console.log(process.env.NODE_ENV);
 
 // Serve our api message
 app.get("/api/message", async (req, res, next) => {
   try {
-    res.status(201).json({ message: "HELLOOOOO FROM EXPRESS" });
+    res.status(201).json({ message: "Hello From Express!" });
   } catch (err) {
     next(err);
   }
@@ -18,10 +19,18 @@ app.get("/api/message", async (req, res, next) => {
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
   app.use(express.static("build"));
-
-  // Express will serve up the front-end index.html file if it doesn't recognize the route
   app.get("*", (req, res) => res.sendFile(path.resolve("build", "index.html")));
 }
+
+if (process.env.NODE_ENV === "dev") {
+  // Express will serve up production assets
+  app.use(express.static("public"));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve("public", "index.html"))
+  );
+}
+
+// Express will serve up the front-end index.html file if it doesn't recognize the route
 
 // Choose the port and start the server
 const PORT = process.env.PORT || 5000;

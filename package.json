@@ -7,6 +7,7 @@
     "concurrently": "^4.0.1",
     "express": "^4.16.4",
     "http-proxy-middleware": "^0.19.0",
+    "morgan": "^1.9.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5",
@@ -19,7 +20,7 @@
     "client": "react-scripts start",
     "server": "nodemon server",
     "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "dev": "NODE_ENV=dev concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
@@ -30,8 +31,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "morgan": "^1.9.1"
-  }
+  ]
 }
