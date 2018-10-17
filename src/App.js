@@ -17,12 +17,15 @@ class App extends Component {
   }
 
   fetchExpress = async () => {
-    const eee = await fetch(`/api`).then(res => console.log(res));
-    console.log(eee);
+    const ftch = await fetch(`/api`).then(res => console.log(res));
+    console.log("fetch response: ", ftch);
+
+    await fetch(`/api`).then(res => console.log("res.json:", res.json()));
+
+    await fetch(`/api`).then(res => console.log("res.body:", res.body));
+
     try {
       const response = await fetch(`/api`);
-      const text = await response.text();
-      console.log(text);
       const { data } = await response.json();
       console.log("data", data);
       this.setState({ data: data });
@@ -39,9 +42,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>WELCOME CREATE REACT APP!</p>
           <div className="App-link">{this.state.data}</div>
-          {/* <div>error: {this.state.error}</div> */}
-          <div>text: {this.state.text}</div>
-          <div>eee: {this.state.eee}</div>
         </header>
       </div>
     );
