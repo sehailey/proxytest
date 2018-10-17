@@ -12,24 +12,13 @@ class App extends Component {
       text: ""
     };
   }
-  componentDidMount() {
-    this.fetchExpress();
-  }
+  componentDidMount = () => this.fetchAPIMessage();
 
-  fetchExpress = async () => {
-    const ftch = await fetch(`/api`).then(res => console.log(res));
-    console.log("fetch response: ", ftch);
-
-    await fetch(`/api`).then(res => console.log("res.json:", res.json()));
-
-    await fetch(`/api`).then(res => console.log("res.body:", res.body));
-
+  fetchAPIMessage = async () => {
     try {
-      const response = await fetch(`/api`);
-      const { data } = await response.json();
-      console.log("data", data);
-      console.log("FUUUUU");
-      this.setState({ data: data });
+      const res = await fetch(`/api`);
+      const { message } = await res.json();
+      this.setState({ message });
     } catch (e) {
       console.log(e);
       this.setState({ error: "Did not get data from Express" });
@@ -42,7 +31,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>WELCOME CREATE REACT APP!</p>
-          <div className="App-link">{this.state.data}</div>
+          <div className="App-link">{this.state.message}</div>
         </header>
       </div>
     );

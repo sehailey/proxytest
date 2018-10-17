@@ -1,28 +1,27 @@
 const express = require("express");
 const path = require("path");
+const morgan = require("morgan");
 
 // Create the server
 const app = express();
+app.use(morgan("tiny")); // logging framework
 
-// Serve static files from the React frontend app
-
-// Serve our api route /cow that returns a custom talking text cow
-app.get("/api", async (req, res, next) => {
+// Serve our api message
+app.get("/api/message", async (req, res, next) => {
   try {
-    const data = { data: "HELLOOOOO FROM EXPRESS" };
-    console.log(data);
-    res.json(data);
+    res.status(201).json({ message: "HELLOOOOO FROM EXPRESS" });
   } catch (err) {
     next(err);
   }
 });
 
-app.use(express.static(path.join(__dirname, "build")));
+if (process.env.NODE_ENV === "production") {
+  // Express will serve up production assets
+  app.use(express.static("build"));
 
-// Anything that doesn't match the above, send back the index.html file
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/build/index.html"));
-});
+  // Express will serve up the front-end index.html file if it doesn't recognize the route
+  app.get("*", (req, res) => res.sendFile(path.resolve("build", "index.html")));
+}
 
 // Choose the port and start the server
 const PORT = process.env.PORT || 5000;
