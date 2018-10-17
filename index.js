@@ -10,7 +10,7 @@ console.log(process.env.NODE_ENV);
 // Serve our api message
 app.get("/api/message", async (req, res, next) => {
   try {
-    res.status(201).json({ message: "Hello From Express!" });
+    res.status(201).json({ message: "Hello From Express!!" });
   } catch (err) {
     next(err);
   }
