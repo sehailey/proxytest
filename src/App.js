@@ -28,6 +28,7 @@ class App extends Component {
       const response = await fetch(`/api`);
       const { data } = await response.json();
       console.log("data", data);
+      console.log("FUUUUU");
       this.setState({ data: data });
     } catch (e) {
       console.log(e);
